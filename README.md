@@ -8,9 +8,10 @@ The solution implements a Medallion Architecture (Bronze → Silver → Gold) to
 
 ---
 
-## 🏗️ Solution Architecture
 
-(Add Architecture Diagram)
+## 🏗️ Architecture
+
+![Architecture](images/architecture.png.png)
 
 ---
 
