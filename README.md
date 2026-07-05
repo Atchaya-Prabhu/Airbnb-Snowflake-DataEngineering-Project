@@ -1,125 +1,105 @@
-# 🏠 Airbnb End-to-End Data Engineering Project
+# 🏠 Airbnb End-to-End Data Engineering Pipeline
 
-## 📋 Overview
+## 📋 Project Overview
 
-This project implements a complete end-to-end data engineering pipeline for Airbnb data using modern cloud technologies. The solution demonstrates best practices in data warehousing, transformation, and analytics using **Snowflake**, **dbt (Data Build Tool)**, and **AWS**.
+This project demonstrates an end-to-end cloud data engineering solution that processes Airbnb listings, bookings, and host data into analytics-ready datasets using modern data engineering technologies.
 
-The pipeline processes Airbnb listings, bookings, and hosts data through a medallion architecture (Bronze → Silver → Gold), implementing incremental loading, slowly changing dimensions (SCD Type 2), and creating analytics-ready datasets.
+The solution implements a Medallion Architecture (Bronze → Silver → Gold) to perform scalable data ingestion, transformation, data modeling, and analytics. It also showcases incremental processing, Slowly Changing Dimensions (SCD Type 2), and dimensional modeling to support business reporting and analytical workloads.
 
-## 🏗️ Architecture
+---
 
-### Data Flow
-```
-Source Data (CSV) → AWS S3 → Snowflake (Staging) → Bronze Layer → Silver Layer → Gold Layer
-                                                           ↓              ↓           ↓
-                                                      Raw Tables    Cleaned Data   Analytics
-```
+## 🏗️ Solution Architecture
 
-### Technology Stack
+(Add Architecture Diagram)
 
-- **Cloud Data Warehouse**: Snowflake
-- **Transformation Layer**: dbt (Data Build Tool)
-- **Cloud Storage**: AWS S3 (implied)
-- **Version Control**: Git
-- **Python**: 3.12+
-- **Key dbt Features**:
-  - Incremental models
-  - Snapshots (SCD Type 2)
-  - Custom macros
-  - Jinja templating
-  - Testing and documentation
+---
 
-## 📊 Data Model
+## 🛠️ Technology Stack
 
-### Medallion Architecture
+**Cloud Platform**
+- AWS S3
+- Snowflake
 
-#### 🥉 Bronze Layer (Raw Data)
-Raw data ingested from staging with minimal transformations:
-- `bronze_bookings` - Raw booking transactions
-- `bronze_hosts` - Raw host information
-- `bronze_listings` - Raw property listings
+**Data Transformation**
+- dbt
+- SQL
+- Jinja
 
-#### 🥈 Silver Layer (Cleaned Data)
-Cleaned and standardized data:
-- `silver_bookings` - Validated booking records
-- `silver_hosts` - Enhanced host profiles with quality metrics
-- `silver_listings` - Standardized listing information with price categorization
+**Programming**
+- Python
 
-#### 🥇 Gold Layer (Analytics-Ready)
-Business-ready datasets optimized for analytics:
-- `obt` (One Big Table) - Denormalized fact table joining bookings, listings, and hosts
-- `fact` - Fact table for dimensional modeling
-- Ephemeral models for intermediate transformations
+**Version Control**
+- Git
+- GitHub
 
-### Snapshots (SCD Type 2)
-Slowly Changing Dimensions to track historical changes:
-- `dim_bookings` - Historical booking changes
-- `dim_hosts` - Historical host profile changes
-- `dim_listings` - Historical listing changes
+---
 
-## 📁 Project Structure
+## 📊 Data Architecture
 
-```
-AWS_DBT_Snowflake/
-├── README.md                           # This file
-├── pyproject.toml                      # Python dependencies
-├── main.py                             # Main execution script
-│
-├── SourceData/                         # Raw CSV data files
-│   ├── bookings.csv
-│   ├── hosts.csv
-│   └── listings.csv
-│
-├── DDL/                                # Database schema definitions
-│   ├── ddl.sql                         # Table creation scripts
-│   └── resources.sql
-│
-└── aws_dbt_snowflake_project/         # Main dbt project
-    ├── dbt_project.yml                 # dbt project configuration
-    ├── ExampleProfiles.yml             # Snowflake connection profile
-    │
-    ├── models/                         # dbt models
-    │   ├── sources/
-    │   │   └── sources.yml             # Source definitions
-    │   ├── bronze/                     # Raw data layer
-    │   │   ├── bronze_bookings.sql
-    │   │   ├── bronze_hosts.sql
-    │   │   └── bronze_listings.sql
-    │   ├── silver/                     # Cleaned data layer
-    │   │   ├── silver_bookings.sql
-    │   │   ├── silver_hosts.sql
-    │   │   └── silver_listings.sql
-    │   └── gold/                       # Analytics layer
-    │       ├── fact.sql
-    │       ├── obt.sql
-    │       └── ephemeral/              # Temporary models
-    │           ├── bookings.sql
-    │           ├── hosts.sql
-    │           └── listings.sql
-    │
-    ├── macros/                         # Reusable SQL functions
-    │   ├── generate_schema_name.sql    # Custom schema naming
-    │   ├── multiply.sql                # Math operations
-    │   ├── tag.sql                     # Categorization logic
-    │   └── trimmer.sql                 # String utilities
-    │
-    ├── analyses/                       # Ad-hoc analysis queries
-    │   ├── explore.sql
-    │   ├── if_else.sql
-    │   └── loop.sql
-    │
-    ├── snapshots/                      # SCD Type 2 configurations
-    │   ├── dim_bookings.yml
-    │   ├── dim_hosts.yml
-    │   └── dim_listings.yml
-    │
-    ├── tests/                          # Data quality tests
-    │   └── source_tests.sql
-    │
-    └── seeds/                          # Static reference data
-```
+### 🥉 Bronze Layer
+- Raw Airbnb listings
+- Raw bookings
+- Raw hosts
 
+### 🥈 Silver Layer
+- Data cleansing
+- Standardization
+- Business transformations
+- Data quality validation
 
+### 🥇 Gold Layer
+- Fact tables
+- Dimension tables
+- Analytics-ready datasets
+- Business reporting models
+
+---
+
+## ✨ Key Features
+
+- End-to-end ELT pipeline
+- Medallion Architecture
+- Incremental Loading
+- Slowly Changing Dimensions (SCD Type 2)
+- dbt Models & Macros
+- Data Quality Testing
+- Analytics-ready Data Models
+
+---
+
+## 📈 Data Quality
+
+- Schema validation
+- Unique key validation
+- Null checks
+- Referential integrity
+- Business rule validation
+
+---
+
+## 🚀 Key Learnings
+
+- Built scalable ELT pipelines using Snowflake and dbt
+- Implemented Medallion Architecture
+- Applied SCD Type 2 for historical tracking
+- Developed reusable dbt models and macros
+- Designed analytics-ready dimensional models
+
+---
+
+## 📷 Project Demo
+
+(Add screenshots)
+
+---
+
+## 📈 Future Enhancements
+
+- CI/CD with GitHub Actions
+- Monitoring & Alerting
+- Data Quality Dashboard
+- Power BI Integration
+- Automated Testing
 
 
 
